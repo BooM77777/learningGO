@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+// main 函数有问题
 func main() {
 	prices := [...]int{0: 1, 1: 3, 2: 2, 3: 8, 4: 4, 5: 9}
 	fmt.Println(maxProfit(prices, 2))
