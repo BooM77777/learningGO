@@ -7,9 +7,8 @@ func main() {
 func max(a, b int) int {
 	if a > b {
 		return a
-	} else {
-		return b
 	}
+	return b
 }
 
 func maximalRectangle(matrix [][]byte) (ans int) {
