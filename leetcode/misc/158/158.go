@@ -13,15 +13,17 @@ package main
  * read4(buf4) // read4 returns 3. Now buf = ['i','j','k',...], fp points to end of file
  */
 
-type buffer struct {
+// Buffer 缓冲区
+type Buffer struct {
 	buf      []byte
 	readIter int
 	bufSize  int
 	read4    func([]byte) int
 }
 
-func NewBuffer(read4 func([]byte) int) *buffer {
-	return &buffer{
+// NewBuffer 构造函数
+func NewBuffer(read4 func([]byte) int) *Buffer {
+	return &Buffer{
 		buf:      make([]byte, 4),
 		readIter: 0,
 		bufSize:  0,
@@ -29,12 +31,12 @@ func NewBuffer(read4 func([]byte) int) *buffer {
 	}
 }
 
-func (b *buffer) load() {
+func (b *Buffer) load() {
 	b.bufSize = b.read4(b.buf)
 	b.readIter = 0
 }
 
-func (b *buffer) read(outBuf []byte, n int) int {
+func (b *Buffer) read(outBuf []byte, n int) int {
 	if b.readIter == b.bufSize {
 		b.load()
 	}
