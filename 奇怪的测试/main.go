@@ -1,9 +1,17 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
+
+func test(data int) (ret int) {
+	ret = data
+	defer func() {
+		ret++
+	}()
+	return ret
+}
 
 func main() {
-	a := 14
-	fmt.Println()
-	fmt.Println(a & (-a))
+	fmt.Println(test(512))
 }
