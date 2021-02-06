@@ -64,6 +64,11 @@ func TestClient(t *testing.T) {
 				fmt.Println(getGID(), topic, msg)
 			}
 
+			for _, topic := range topicList {
+				msg, _ := client.GetMsg(topic)
+				fmt.Println("again : ", getGID(), topic, msg)
+			}
+
 			wg.Done()
 		}()
 	}
