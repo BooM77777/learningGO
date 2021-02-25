@@ -2,6 +2,8 @@ package main
 
 import (
 	"fmt"
+	"sync"
+	"time"
 )
 
 func test(data int) (ret int) {
@@ -13,5 +15,19 @@ func test(data int) (ret int) {
 }
 
 func main() {
-	fmt.Println(test(512))
+	var waitgroup sync.WaitGroup
+	go func() {
+		waitgroup.Add(1)
+		fmt.Println("go 1")
+		time.Sleep(1 * time.Second)
+		waitgroup.Done()
+	}()
+	go func() {
+		waitgroup.Add(1)
+		fmt.Println("go 0")
+		time.Sleep(1 * time.Second)
+		waitgroup.Done()
+	}()
+	waitgroup.Wait()
+	fmt.Println("Exit")
 }
