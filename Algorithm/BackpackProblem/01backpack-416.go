@@ -1,3 +1,5 @@
+package main
+
 func canPartition(nums []int) bool {
 	sum, maxVal := 0, nums[0]
 	for _, num := range nums {
